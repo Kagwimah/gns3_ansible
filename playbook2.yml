@@ -1,6 +1,6 @@
 ---
 - name: Install OSPF
-  hosts: [gns3.com]
+  hosts: all
   gather_facts: false
   connection: local
 
