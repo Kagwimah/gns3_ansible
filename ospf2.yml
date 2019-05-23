@@ -1,0 +1,31 @@
+---
+## save config using handlers
+- name: Install OSPF
+  hosts: [gns3.com]
+  gather_facts: false
+  connection: local
+
+  vars:
+    cli:
+      username: cisco
+      password: cisco
+      #transport: cli
+
+  tasks:
+    - name: enable ospf
+      ios_config:
+        provider: "{{ cli }}"
+        authorize: yes
+        parents: router ospf 1
+        lines:
+          - network 0.0.0.0 255.255.255.255 area 0
+      notify: "save ios"
+
+  handlers:
+    - name: save ios
+      ios_command:
+        commands: "write mem"
+        timeout: 40
+      when: not ansible_check_mode
+
+      
