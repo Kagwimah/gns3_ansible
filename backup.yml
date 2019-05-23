@@ -21,7 +21,7 @@
   run_once: true
 
 - name: show running configs and save output
-  hosts: gns3.com
+  hosts: all
   gather_facts: false
   connection: local
 
@@ -43,7 +43,7 @@
        dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
 
 - name: run selected commands and format the output
-  hosts: gns3.com
+  hosts: all
   gather_facts: false
   connection: local
   
